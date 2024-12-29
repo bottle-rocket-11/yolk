@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yolk/core/constants/padding.dart';
 import 'package:yolk/core/constants/spacing.dart';
+import 'package:yolk/core/routing/routes.dart';
 import 'package:yolk/ui/widgets/task_list_item.dart';
 
 /// A stateful widget representing the main home page of the application.
@@ -24,16 +26,22 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('Hi, Hugo'),
         centerTitle: false,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            onPressed: () => context.go(Routes.auth.path),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(AppPadding.sm),
         child: Column(
           spacing: AppSpacing.sm,
-          children: <Widget>[
+          children: [
             TaskListItem(
               title: 'Shopping List',
               isComplete: false,
-              onTap: () {},
+              onTap: () => context.go(Routes.auth.path),
               onCheckboxChanged: (value) {},
               completedSubtasks: 2,
               totalSubtasks: 5,
@@ -56,8 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Create task or habit',
+        onPressed: () => context.go(Routes.create.path),
+        tooltip: 'New Task or Habit',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );

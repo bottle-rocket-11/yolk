@@ -13,7 +13,7 @@ class YolkThemes {
   /// throughout the app when in light mode.
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    fontFamily: 'Roboto', // Choose a calming font
+    fontFamily: 'Asap', // Choose a calming font
     primaryColor: Colors.blue[100], // Sky blue
     scaffoldBackgroundColor: Colors.grey[50], // Soft, off-white
     appBarTheme: AppBarTheme(
@@ -45,7 +45,7 @@ class YolkThemes {
   /// properties used throughout the app when dark mode is enabled.
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    fontFamily: 'Roboto',
+    fontFamily: 'Asap',
     primaryColor: Colors.purple[800], // Deep night sky blue
     scaffoldBackgroundColor: Colors.grey[850], // Dark background
     appBarTheme: AppBarTheme(

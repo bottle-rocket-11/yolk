@@ -1,22 +1,9 @@
 // GoRouter configuration
 import 'package:go_router/go_router.dart';
+import 'package:yolk/core/routing/routes.dart';
 import 'package:yolk/ui/auth/auth_screen.dart';
+import 'package:yolk/ui/create/create_screen.dart';
 import 'package:yolk/ui/home/home_screen.dart';
-
-/// Defines navigation routes for the application.
-enum Routes {
-  /// The home screen route.
-  home('/'),
-
-  /// Authentication screen route
-  auth('/auth');
-
-  /// Creates a new instance of the [Routes] enum.
-  const Routes(this.path);
-
-  /// The path for the route.
-  final String path;
-}
 
 /// The main application router configuration.
 final router = GoRouter(
@@ -27,6 +14,13 @@ final router = GoRouter(
       name: Routes.home.name,
       path: Routes.home.path,
       builder: (context, state) => const HomeScreen(),
+      routes: [
+        GoRoute(
+          name: Routes.create.name,
+          path: Routes.create.path,
+          builder: (context, state) => const CreateTaskScreen(),
+        ),
+      ],
     ),
     GoRoute(
       name: Routes.auth.name,

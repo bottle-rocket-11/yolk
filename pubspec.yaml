@@ -22,6 +22,7 @@ environment:
   sdk: ^3.5.4
 
 dependencies:
+  auth_buttons: ^3.0.3
   bloc: ^8.1.4
   cupertino_icons: ^1.0.8
   flutter:
@@ -56,17 +57,21 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: Asap
+      fonts:
+        - asset: fonts/Asap_Light.ttf
+        - asset: fonts/Asap_LightItalic.ttf
+          style: italic
+        - asset: fonts/Asap_Regular.ttf
+        - asset: fonts/Asap_Italic.ttf
+          style: italic
+        - asset: fonts/Asap_Medium.ttf
+        - asset: fonts/Asap_MediumItalic.ttf
+          style: italic
+        - asset: fonts/Asap_SemiBold.ttf
+        - asset: fonts/Asap_SemiBoldItalic.ttf
+          style: italic
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

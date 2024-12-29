@@ -1,4 +1,12 @@
+import 'package:auth_buttons/auth_buttons.dart'
+    show AppleAuthButton, AuthButtonStyle, AuthButtonType, GoogleAuthButton;
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yolk/core/configs/onboarding_type.dart';
+import 'package:yolk/core/constants/padding.dart';
+import 'package:yolk/core/constants/spacing.dart';
+import 'package:yolk/core/extensions/onboarding_type_ext.dart';
+import 'package:yolk/core/routing/routes.dart';
 
 /// A screen widget that handles user authentication.
 ///
@@ -7,85 +15,69 @@ import 'package:flutter/material.dart';
 ///
 /// The widget is stateless as it likely relies on external state management
 /// for handling authentication state and user data.
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends StatefulWidget {
   /// Creates a new instance of the [AuthScreen] widget.
   const AuthScreen({super.key});
 
   @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
+  final OnboardingType _onboardingType = OnboardingType.login;
+
+  @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(AppPadding.lg),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
-                'Welcome',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
+              Text(
+                _onboardingType.message,
                 textAlign: TextAlign.center,
+                style: textTheme.headlineMedium,
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              const Row(
+                children: [
+                  Text(
+                    'Already have an account?',
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    'Sign in',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
               const SizedBox(height: 48),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(16),
-                  backgroundColor: Colors.white,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 24,
-                      width: 24,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.red,
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GoogleAuthButton(
+                    style: const AuthButtonStyle(
+                      elevation: 0,
+                      buttonType: AuthButtonType.icon,
                     ),
-                    const SizedBox(width: 12),
-                    const Text(
-                      'Continue with Google',
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 16,
-                      ),
+                    onPressed: () {
+                      context.go(Routes.home.path);
+                    },
+                  ),
+                  AppleAuthButton(
+                    style: const AuthButtonStyle(
+                      elevation: 0,
+                      buttonType: AuthButtonType.icon,
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(16),
-                  backgroundColor: Colors.black,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 24,
-                      width: 24,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.red,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    const Text(
-                      'Continue with Apple',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
+                    onPressed: () {
+                      context.go(Routes.home.path);
+                    },
+                  ),
+                ],
               ),
             ],
           ),

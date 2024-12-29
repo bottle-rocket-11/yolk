@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yolk/core/constants/padding.dart';
+import 'package:yolk/core/constants/spacing.dart';
 
 /// A widget that displays a single task item in a list.
 class TaskListItem extends StatelessWidget {
@@ -51,41 +52,44 @@ class TaskListItem extends StatelessWidget {
       clipper: const ShapeBorderClipper(
         shape: ContinuousRectangleBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(80),
+            Radius.circular(100),
           ),
         ),
       ),
-      child: Card.filled(
-        child: Padding(
-          padding: const EdgeInsets.all(AppPadding.md),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      summary,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Colors.grey[600],
-                          ),
-                    ),
-                  ],
+      child: InkWell(
+        onTap: onTap,
+        child: Card.filled(
+          child: Padding(
+            padding: const EdgeInsets.all(AppPadding.lg),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    spacing: AppSpacing.xs,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      Text(
+                        summary,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Colors.grey[600],
+                            ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 200),
-                child: Checkbox(
-                  value: isComplete,
-                  onChanged: onCheckboxChanged,
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 200),
+                  child: Checkbox(
+                    value: isComplete,
+                    onChanged: onCheckboxChanged,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
