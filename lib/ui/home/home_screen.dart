@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yolk/core/constants/padding.dart';
+import 'package:yolk/core/constants/spacing.dart';
 import 'package:yolk/ui/widgets/task_list_item.dart';
 
 /// A stateful widget representing the main home page of the application.
@@ -23,33 +25,35 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Hi, Hugo'),
         centerTitle: false,
       ),
-      body: Column(
-        children: <Widget>[
-          TaskListItem(
-            title: 'Shopping List',
-            isComplete: false,
-            onTap: () {},
-            onCheckboxChanged: (value) {},
-            completedSubtasks: 2,
-            totalSubtasks: 5,
-          ),
-          TaskListItem(
-            title: 'Test Task',
-            isComplete: false,
-            onTap: () {},
-            onCheckboxChanged: (value) {},
-            completedSubtasks: 2,
-            totalSubtasks: 5,
-          ),
-          TaskListItem(
-            title: 'Test Task',
-            isComplete: false,
-            onTap: () {},
-            onCheckboxChanged: (value) {},
-            completedSubtasks: 2,
-            totalSubtasks: 5,
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(AppPadding.sm),
+        child: Column(
+          spacing: AppSpacing.sm,
+          children: <Widget>[
+            TaskListItem(
+              title: 'Shopping List',
+              isComplete: false,
+              onTap: () {},
+              onCheckboxChanged: (value) {},
+              completedSubtasks: 2,
+              totalSubtasks: 5,
+            ),
+            TaskListItem(
+              title: 'Test Task',
+              isComplete: false,
+              onTap: () {},
+              onCheckboxChanged: (value) {},
+              completedSubtasks: 2,
+              totalSubtasks: 5,
+            ),
+            TaskListItem(
+              title: 'Test Task',
+              isComplete: true,
+              onTap: () {},
+              onCheckboxChanged: (value) {},
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
