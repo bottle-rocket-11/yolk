@@ -56,7 +56,7 @@ class TaskListItem extends StatelessWidget {
           ),
         ),
       ),
-      child: InkWell(
+      child: GestureDetector(
         onTap: onTap,
         child: Card.filled(
           child: Padding(

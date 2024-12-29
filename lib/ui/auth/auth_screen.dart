@@ -24,58 +24,87 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  final OnboardingType _onboardingType = OnboardingType.login;
+  OnboardingType _onboardingType = OnboardingType.login;
+
+  void _switchAuthType() {
+    if (_onboardingType == OnboardingType.login) {
+      setState(() {
+        _onboardingType = OnboardingType.register;
+      });
+    } else {
+      setState(() {
+        _onboardingType = OnboardingType.login;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(AppPadding.lg),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: AppSpacing.xxl,
             children: [
-              Text(
-                _onboardingType.message,
-                textAlign: TextAlign.center,
-                style: textTheme.headlineMedium,
+              Image.asset(
+                'assets/icon/icon.png',
+                height: 200,
               ),
-              const SizedBox(height: AppSpacing.sm),
-              const Row(
+              Column(
                 children: [
                   Text(
-                    'Already have an account?',
+                    _onboardingType.message,
                     textAlign: TextAlign.center,
+                    style: textTheme.headlineMedium,
                   ),
-                  Text(
-                    'Sign in',
-                    textAlign: TextAlign.center,
+                  const SizedBox(height: AppSpacing.sm),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    spacing: AppSpacing.xs,
+                    children: [
+                      Text(
+                        'Already have an account?',
+                        style: textTheme.bodyLarge,
+                      ),
+                      GestureDetector(
+                        onTap: _switchAuthType,
+                        child: Text(
+                          'Sign in',
+                          style: textTheme.bodyLarge?.copyWith(
+                            color: theme.hintColor,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              const SizedBox(height: 48),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GoogleAuthButton(
-                    style: const AuthButtonStyle(
-                      elevation: 0,
-                      buttonType: AuthButtonType.icon,
-                    ),
-                    onPressed: () {
-                      context.go(Routes.home.path);
-                    },
-                  ),
-                  AppleAuthButton(
-                    style: const AuthButtonStyle(
-                      elevation: 0,
-                      buttonType: AuthButtonType.icon,
-                    ),
-                    onPressed: () {
-                      context.go(Routes.home.path);
-                    },
+                  const SizedBox(height: 48),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      GoogleAuthButton(
+                        style: const AuthButtonStyle(
+                          elevation: 0,
+                          buttonType: AuthButtonType.icon,
+                        ),
+                        onPressed: () {
+                          context.go(Routes.home.path);
+                        },
+                      ),
+                      AppleAuthButton(
+                        style: const AuthButtonStyle(
+                          elevation: 0,
+                          buttonType: AuthButtonType.icon,
+                        ),
+                        onPressed: () {
+                          context.go(Routes.home.path);
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),

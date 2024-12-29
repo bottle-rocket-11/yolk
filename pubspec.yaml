@@ -19,25 +19,32 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.4
+  sdk: ">=3.5.4 <=4.0.0"
 
 dependencies:
-  auth_buttons: ^3.0.3
-  bloc: ^8.1.4
-  cupertino_icons: ^1.0.8
+  auth_buttons: 3.0.3
+  bloc: 8.1.4
+  crypto: 3.0.6
+  cupertino_icons: 1.0.8
+  envied: 1.0.0
   flutter:
     sdk: flutter
-  flutter_launcher_icons: ^0.14.2
-  get_it: ^8.0.3
-  go_router: ^14.6.2
-  injectable: ^2.5.0
-  supabase: ^2.6.1
+  flutter_launcher_icons: 0.14.2
+  get_it: 8.0.3
+  go_router: 14.6.2
+  google_sign_in: 6.2.2
+  injectable: 2.5.0
+  sign_in_with_apple: ^6.1.4
+  supabase_flutter: 2.8.2
 
 dev_dependencies:
-  flutter_lints: ^4.0.0
+  build_runner: 2.4.14
+  envied_generator: 1.0.0
+  flutter_lints: 4.0.0
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^7.0.0
+  injectable_generator: 2.6.2
+  very_good_analysis: 7.0.0
 
 # The following section is specific to Flutter packages.
 flutter:
@@ -60,17 +67,17 @@ flutter:
   fonts:
     - family: Asap
       fonts:
-        - asset: fonts/Asap_Light.ttf
-        - asset: fonts/Asap_LightItalic.ttf
+        - asset: fonts/Asap-Light.ttf
+        - asset: fonts/Asap-LightItalic.ttf
           style: italic
-        - asset: fonts/Asap_Regular.ttf
-        - asset: fonts/Asap_Italic.ttf
+        - asset: fonts/Asap-Regular.ttf
+        - asset: fonts/Asap-Italic.ttf
           style: italic
-        - asset: fonts/Asap_Medium.ttf
-        - asset: fonts/Asap_MediumItalic.ttf
+        - asset: fonts/Asap-Medium.ttf
+        - asset: fonts/Asap-MediumItalic.ttf
           style: italic
-        - asset: fonts/Asap_SemiBold.ttf
-        - asset: fonts/Asap_SemiBoldItalic.ttf
+        - asset: fonts/Asap-SemiBold.ttf
+        - asset: fonts/Asap-SemiBoldItalic.ttf
           style: italic
   #
   # For details regarding fonts from package dependencies,
