@@ -76,13 +76,18 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Session? getCurrentSession() => _supabase.client.auth.currentSession;
+
+  @override
+  User? getCurrentUser() => _supabase.client.auth.currentUser;
+
+  @override
+  Stream<User?> getCurrentUserStream() =>
+      _supabase.client.auth.onAuthStateChange
+          .map((event) => event.session?.user);
+
+  @override
   Future<void> signOut() async {
     await _supabase.client.auth.signOut();
   }
-
-  @override
-  User? getUser() => _supabase.client.auth.currentUser;
-
-  @override
-  Session? getSession() => _supabase.client.auth.currentSession;
 }

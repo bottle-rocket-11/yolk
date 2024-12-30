@@ -22,15 +22,7 @@ class YolkThemes {
       backgroundColor: Colors.grey[50], // Slightly darker sky blue
       elevation: 0, // Flat app bar for a clean look
     ),
-    textTheme: TextTheme(
-      headlineLarge: TextStyle(
-        fontWeight: FontWeight.bold,
-        color: Colors.grey[700], // Dark grey for contrast
-      ),
-      bodyMedium: TextStyle(
-        color: Colors.grey[600], // Slightly lighter grey for body text
-      ),
-    ),
+    textTheme: const TextTheme(),
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.blue[100]!, //  Base color for accents
       secondary: Colors.amber[200], //  Sunrise orange as a secondary
@@ -54,14 +46,7 @@ class YolkThemes {
       backgroundColor: Colors.grey[850], // Even deeper night sky blue
       elevation: 0,
     ),
-    textTheme: TextTheme(
-      headlineLarge: TextStyle(
-        color: Colors.grey[50], // Light grey for contrast
-      ),
-      bodyMedium: TextStyle(
-        color: Colors.grey[300], // Lighter grey for body text
-      ),
-    ),
+    textTheme: const TextTheme(),
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.dark,
       seedColor: Colors.purple[800]!,
