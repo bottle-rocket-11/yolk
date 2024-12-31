@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yolk/bloc/auth/auth_bloc.dart';
+import 'package:yolk/bloc/auth/auth_event.dart';
 import 'package:yolk/core/constants/padding.dart';
 import 'package:yolk/core/constants/spacing.dart';
+import 'package:yolk/core/di.dart';
 import 'package:yolk/core/routing/routes.dart';
 import 'package:yolk/ui/widgets/task_list_item.dart';
 
@@ -29,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
-            onPressed: () => context.go(Routes.auth.path),
+            onPressed: () => getIt<AuthBloc>().add(AuthLogoutPressedEvent()),
           ),
         ],
       ),

@@ -6,9 +6,9 @@ extension OnboardingTypeExt on OnboardingType {
   String get message {
     switch (this) {
       case OnboardingType.login:
-        return 'Welcome';
+        return 'Sign in';
       case OnboardingType.register:
-        return 'Welcome';
+        return 'Create an account';
     }
   }
 }

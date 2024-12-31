@@ -25,5 +25,8 @@ class AuthOnCurrentUserChangedEvent extends AuthEvent {
 /// The [AuthGooglePressedEvent] is used to sign in a user with Google
 class AuthGooglePressedEvent extends AuthEvent {}
 
+/// The [AuthApplePressedEvent] is used to sign in a user with Appl
+class AuthApplePressedEvent extends AuthEvent {}
+
 /// The [AuthLogoutPressedEvent] is used to sign out a user
 class AuthLogoutPressedEvent extends AuthEvent {}

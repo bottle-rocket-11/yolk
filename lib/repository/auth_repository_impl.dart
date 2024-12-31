@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
-import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:yolk/env.dart';
 import 'package:yolk/repository/auth_repository.dart';
 
 /// An implementation of the [AuthRepository] interface.
@@ -44,12 +44,12 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> signInWithGoogle() async {
+  Future<AuthResponse> signInWithGoogle() async {
     /// Web Client ID that you registered with Google Cloud.
-    const webClientId = 'my-web.apps.googleusercontent.com';
+    const webClientId = Env.gcpWebClientId;
 
     /// iOS Client ID that you registered with Google Cloud.
-    const iosClientId = 'my-ios.apps.googleusercontent.com';
+    const iosClientId = Env.gcpIosClientId;
 
     final googleSignIn = GoogleSignIn(
       clientId: iosClientId,
@@ -61,14 +61,18 @@ class AuthRepositoryImpl implements AuthRepository {
     final idToken = googleAuth.idToken;
 
     if (accessToken == null) {
-      debugPrint('No Access Token found.');
-    }
-    if (idToken == null) {
-      debugPrint('No ID Token found.');
-      return;
+      throw const AuthException(
+        'Could not find Access Token from generated credential.',
+      );
     }
 
-    await _supabase.client.auth.signInWithIdToken(
+    if (idToken == null) {
+      throw const AuthException(
+        'Could not find ID Token from generated credential.',
+      );
+    }
+
+    return _supabase.client.auth.signInWithIdToken(
       provider: OAuthProvider.google,
       idToken: idToken,
       accessToken: accessToken,
@@ -76,18 +80,17 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Session? getCurrentSession() => _supabase.client.auth.currentSession;
-
-  @override
-  User? getCurrentUser() => _supabase.client.auth.currentUser;
-
-  @override
-  Stream<User?> getCurrentUserStream() =>
-      _supabase.client.auth.onAuthStateChange
-          .map((event) => event.session?.user);
-
-  @override
   Future<void> signOut() async {
     await _supabase.client.auth.signOut();
   }
+
+  @override
+  User? getUser() => _supabase.client.auth.currentUser;
+
+  @override
+  Stream<User?> getUserStream() => _supabase.client.auth.onAuthStateChange
+      .map((event) => event.session?.user);
+
+  @override
+  Session? getSession() => _supabase.client.auth.currentSession;
 }
